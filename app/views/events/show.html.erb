@@ -5,3 +5,8 @@
   <li><%= @event.date %></li>
   <li><%= @event.location %></li>
 </ul>
+
+<%= form_with model: @event_attending do |f| %>
+  <%= f.hidden_field :attended_event_id, value: @event.id %>
+  <p><%= f.submit "Sign me up for the event" %></p>
+<% end %>
