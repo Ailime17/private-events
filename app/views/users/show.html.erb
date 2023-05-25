@@ -6,8 +6,17 @@
 </ul>
 
 <h1>Events you signed up for:</h1>
+
+<p>Expired events:</p>
 <ul>
-  <% @user_attended_events.each do |e| %>
+  <% @user_attended_events.where("date < ?", DateTime.now).each do |e| %>
+    <li><%= e.title %></li>
+  <% end %>
+<br></ul>
+
+<p>Incoming events:</p>
+<ul>
+  <% @user_attended_events.where("date >= ?", DateTime.now).each do |e| %>
     <li><%= e.title %></li>
   <% end %>
 </ul>
