@@ -6,9 +6,13 @@
   <li>Event location: <%= @event.location %></li>
 </ul>
 
-<%= form_with model: @event_attending do |f| %>
-  <%= f.hidden_field :attended_event_id, value: @event.id %>
-  <p><%= f.submit "Sign me up for this event" %></p>
+<% if @event.attendees.exists?(@user.id) %>
+  <p>You signed up for this event</p>
+<% else %>
+  <%= form_with model: @event_attending do |f| %>
+    <%= f.hidden_field :attended_event_id, value: @event.id %>
+    <p><%= f.submit "Sign me up for this event" %></p>
+  <% end %>
 <% end %>
 
 <p>All event attendees:</p>
