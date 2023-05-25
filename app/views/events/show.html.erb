@@ -1,12 +1,19 @@
 <h1><%= @event.title %></h1>
 
 <ul>
-  <li><%= @event.description %></li>
-  <li><%= @event.date %></li>
-  <li><%= @event.location %></li>
+  <li>About this event: <%= @event.description %></li>
+  <li>Event date: <%= @event.date %></li>
+  <li>Event location: <%= @event.location %></li>
 </ul>
 
 <%= form_with model: @event_attending do |f| %>
   <%= f.hidden_field :attended_event_id, value: @event.id %>
-  <p><%= f.submit "Sign me up for the event" %></p>
+  <p><%= f.submit "Sign me up for this event" %></p>
 <% end %>
+
+<p>All event attendees:</p>
+<ul>
+  <% @event.attendees.each do |a| %>
+    <li><%= a.email %></li>
+  <% end %>
+</ul>
