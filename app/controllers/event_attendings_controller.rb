@@ -7,4 +7,14 @@ class EventAttendingsController < ApplicationController
     @e.attendees << @user
     redirect_to event_path(@e)
   end
+
+  def destroy
+    @user = current_user
+    @event = Event.find(params[:id])
+    # @attendee = @event.attendees.find(@user.id)
+    @event.attendees.destroy(@user)
+
+    redirect_to event_path(@event)
+  end
+
 end

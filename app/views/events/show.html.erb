@@ -10,6 +10,7 @@
 
 <% if user_signed_in? && @event.attendees.exists?(@user.id) %>
   <div><strong>You signed up for this event</strong></div>
+  <%= button_to "Quit event", event_attending_path(@event), method: :delete, data: { turbo_method: :delete } %>
 <% elsif user_signed_in? %>
   <%= form_with model: @event_attending do |f| %>
     <%= f.hidden_field :attended_event_id, value: @event.id %>
