@@ -9,12 +9,14 @@
 </ul>
 
 <% if user_signed_in? && @event.attendees.exists?(@user.id) %>
-  <p>You signed up for this event</p>
-<% else %>
+  <div><strong>You signed up for this event</strong></div>
+<% elsif user_signed_in? %>
   <%= form_with model: @event_attending do |f| %>
     <%= f.hidden_field :attended_event_id, value: @event.id %>
     <p><%= f.submit "Sign me up for this event" %></p>
   <% end %>
+<% else %>
+  <div><strong>You have to be logged in to sign up for events</strong></div>
 <% end %>
 
 <p>All event attendees:</p>
