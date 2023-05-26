@@ -6,7 +6,7 @@
   <li>Event location: <%= @event.location %></li>
 </ul>
 
-<% if @event.attendees.exists?(@user.id) %>
+<% if user_signed_in? && @event.attendees.exists?(@user.id) %>
   <p>You signed up for this event</p>
 <% else %>
   <%= form_with model: @event_attending do |f| %>
