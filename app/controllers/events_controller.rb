@@ -29,6 +29,21 @@ class EventsController < ApplicationController
     redirect_to user_path(current_user), status: :see_other
   end
 
+  def edit
+    @event = Event.find(params[:id])
+    @user = current_user
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @user = current_user
+    if @event.update(event_params)
+      redirect_to @event
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
   def event_params
     params.require(:event).permit(:title, :description, :location, :date)
