@@ -29,7 +29,9 @@
 
 <p>All event attendees:</p>
 <ul>
+  <% n = 0 %>
   <% @event.attendees.each do |a| %>
-    <li><%= a.email %></li>
+    <% n += 1 %>
+    <li><%= "Anonymous #{n}" %></li>
   <% end %>
 </ul>
