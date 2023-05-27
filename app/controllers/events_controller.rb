@@ -8,7 +8,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @user = current_user
+    @event = Event.new
   end
 
   def create
@@ -31,12 +31,10 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    @user = current_user
   end
 
   def update
     @event = Event.find(params[:id])
-    @user = current_user
     if @event.update(event_params)
       redirect_to @event
     else

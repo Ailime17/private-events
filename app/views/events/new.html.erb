@@ -1,7 +1,7 @@
 <%= link_to "|Go back to events|", events_path %>
 
 <h1>Add new event:</h1>
-<%= form_with model: [ @user, @user.created_events.build ] do |f| %>
+<%= form_with model: @event do |f| %>
   <p>
     <%= f.label :title %>
     <%= f.text_field :title %>
